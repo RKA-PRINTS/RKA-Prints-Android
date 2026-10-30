@@ -1,0 +1,15 @@
+/build/
+/dist/
+*.apk
+*.idsig
+*.aab
+*.p12
+*.jks
+*.keystore
+*.pem
+*.key
+.env
+.env.*
+local.properties
+__pycache__/
+
