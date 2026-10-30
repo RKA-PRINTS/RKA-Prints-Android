@@ -6,6 +6,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: experimental-apps-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   desktop:
     strategy:
@@ -67,6 +70,8 @@ jobs:
   bundle:
     needs: [desktop, ios]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -89,3 +94,17 @@ jobs:
           if-no-files-found: error
           compression-level: 0
           retention-days: 30
+      - name: Create experimental ZIP and publish prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ZIP="RKA-Prints-Apps-Experimental-${GITHUB_RUN_NUMBER}.zip"
+          (cd bundle && zip -0 -qr "../$ZIP" .)
+          sha256sum "$ZIP" > "$ZIP.sha256"
+          gh release create "experimental-apps-${GITHUB_RUN_NUMBER}" "$ZIP" "$ZIP.sha256" \
+            --target "$GITHUB_SHA" --prerelease --latest=false \
+            --title "Experimental apps build ${GITHUB_RUN_NUMBER}" \
+            --notes-file experimental/README.md
