@@ -1,0 +1,91 @@
+name: Build experimental desktop and Apple apps
+on:
+  push:
+    branches: [experimental/apps]
+    paths: ['experimental/**', '.github/workflows/experimental-apps.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  desktop:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: --win nsis --x64
+            label: Windows
+            pattern: '*.exe'
+          - os: macos-latest
+            target: --mac dmg --arm64
+            label: macOS-Apple-Silicon
+            pattern: '*.dmg'
+          - os: macos-latest
+            target: --mac dmg --x64
+            label: macOS-Intel
+            pattern: '*.dmg'
+          - os: ubuntu-22.04
+            target: --linux AppImage --x64
+            label: Linux
+            pattern: '*.AppImage'
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: experimental/desktop
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - run: npm test
+      - name: Package experimental installer
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+        run: npx electron-builder ${{ matrix.target }} --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: installer-${{ matrix.label }}
+          path: experimental/desktop/dist/${{ matrix.pattern }}
+          if-no-files-found: error
+          retention-days: 7
+  ios:
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile unsigned iPhone and iPad build
+        run: bash experimental/ios/build.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: installer-iPhone-iPad
+          path: experimental/ios/dist/*.ipa
+          if-no-files-found: error
+          retention-days: 7
+  bundle:
+    needs: [desktop, ios]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: installer-*
+          path: bundle
+      - name: Add instructions, source and checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          for folder in bundle/installer-*; do mv "$folder" "${folder/installer-/}"; done
+          cp experimental/README.md bundle/START-HERE.md
+          git archive --format=zip --output=bundle/Experimental-Source.zip HEAD experimental .github/workflows/experimental-apps.yml
+          cd bundle
+          find . -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RKA-Prints-Apps-Experimental
+          path: bundle/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30

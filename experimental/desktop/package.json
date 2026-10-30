@@ -1,0 +1,61 @@
+{
+  "name": "rka-prints-desktop-experimental",
+  "version": "0.1.0",
+  "description": "The live RKA Prints website in an experimental desktop app",
+  "author": "RKA Prints",
+  "private": true,
+  "main": "main.cjs",
+  "scripts": {
+    "test": "node --test navigation-policy.test.cjs",
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis --x64 --publish never",
+    "dist:mac": "electron-builder --mac dmg --x64 --arm64 --publish never",
+    "dist:linux": "electron-builder --linux AppImage --x64 --publish never"
+  },
+  "devDependencies": {
+    "electron": "45.2.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "app.rkaprints.experimental.desktop",
+    "productName": "RKA Prints Experimental",
+    "artifactName": "RKA-Prints-Experimental-${version}-${os}-${arch}.${ext}",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build-resources"
+    },
+    "files": [
+      "main.cjs",
+      "navigation-policy.cjs",
+      "offline.html",
+      "package.json",
+      "build-resources/icon.png"
+    ],
+    "asar": true,
+    "win": {
+      "icon": "build-resources/icon.ico",
+      "target": "nsis",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "mac": {
+      "icon": "build-resources/icon.png",
+      "target": "dmg",
+      "category": "public.app-category.shopping",
+      "identity": "-",
+      "hardenedRuntime": false,
+      "notarize": false
+    },
+    "linux": {
+      "icon": "build-resources/icon.png",
+      "target": "AppImage",
+      "category": "Utility"
+    }
+  }
+}
