@@ -16,6 +16,15 @@ This experiment is separate from the working Android v1.2 release. Test it befor
 
 An unsigned or unnotarized desktop build may be rejected or flagged by operating-system protections. These builds are for testing; they do not have production distribution certificates. Do not disable system-wide security to install them.
 
+## Installation
+
+- **Windows:** extract the ZIP, open the EXE in the Windows folder, and follow the installation wizard.
+- **Mac:** choose Apple Silicon (M-series) or Intel to match your Mac. Open that DMG and drag the app to Applications. These builds use ad-hoc signing and are not notarized.
+- **Linux x64:** extract the AppImage, make it executable with `chmod +x RKA-Prints-Experimental-0.1.0-linux-x64.AppImage`, then run it as your regular desktop user. Your distribution may require FUSE support.
+- **iPhone/iPad:** the IPA is an unsigned developer artifact, not a tap-to-install download. Read the signing notes below and `experimental/ios/BUILD.md` in Experimental-Source.zip.
+
+`SHA256SUMS.txt` records the files in this bundle. Installer compilation does not establish that sign-in or every website feature works on every device.
+
 For iPhone/iPad, open the included native source with an appropriate Apple development workflow, select your Apple development team, and sign/provision for your devices. A compiled IPA alone does not provide signing, device provisioning, App Store or TestFlight approval. The website can also be added to the Home Screen using Safari.
 
 ## Testing

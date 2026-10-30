@@ -51,7 +51,10 @@ final class BrowserController: UIViewController, WKNavigationDelegate, WKUIDeleg
         reloadItem.accessibilityLabel = "Reload website"
         let safari = UIBarButtonItem(image: UIImage(systemName: "safari"), style: .plain, target: self, action: #selector(openSafari))
         safari.accessibilityLabel = "Open in browser"
-        toolbar.items = [backItem, .flexibleSpace(), forwardItem, .flexibleSpace(), reloadItem, .flexibleSpace(), safari]
+        func spacer() -> UIBarButtonItem {
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        }
+        toolbar.items = [backItem, spacer(), forwardItem, spacer(), reloadItem, spacer(), safari]
         progress.translatesAutoresizingMaskIntoConstraints = false
         progress.tintColor = UIColor(red: 3/255, green: 131/255, blue: 113/255, alpha: 1)
         view.addSubview(webView)
