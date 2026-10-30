@@ -12,11 +12,11 @@ Install Node.js 22 or newer, then run `npm ci` and `npm test` from this director
 | --- | --- | --- |
 | Windows x64 | `npm run dist:win` | `RKA-Prints-Experimental-0.1.0-win-x64.exe` (NSIS installer) |
 | macOS | `npm run dist:mac` | `RKA-Prints-Experimental-0.1.0-mac-x64.dmg` and `RKA-Prints-Experimental-0.1.0-mac-arm64.dmg` |
-| Linux x64 | `npm run dist:linux` | `RKA-Prints-Experimental-0.1.0-linux-x64.AppImage` |
+| Linux x64 | `npm run dist:linux` | `RKA-Prints-Experimental-0.1.0-linux-x86_64.AppImage` |
 
 Set `CSC_IDENTITY_AUTO_DISCOVERY=false` on macOS build runners. These experimental builds have no Windows publisher certificate or Apple Developer ID/notarization. OS security tools may warn or block installation. Do not describe them as trusted-store releases. macOS builds use an explicit ad-hoc signature so the bundle has a structural code signature; this does not establish publisher identity or provide notarization.
 
-For Linux, make the AppImage executable (`chmod +x RKA-Prints-Experimental-0.1.0-linux-x64.AppImage`) and run it as a regular desktop user. Depending on the distribution, FUSE support may be required. This app does not disable Chromium's sandbox.
+For Linux, make the AppImage executable (`chmod +x RKA-Prints-Experimental-0.1.0-linux-x86_64.AppImage`) and run it as a regular desktop user. Depending on the distribution, FUSE support may be required. This app does not disable Chromium's sandbox.
 
 ## Behaviour and limits
 
