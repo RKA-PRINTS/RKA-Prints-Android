@@ -34,8 +34,7 @@
     "asar": true,
     "win": {
       "icon": "build-resources/icon.ico",
-      "target": "nsis",
-      "signAndEditExecutable": false
+      "target": "nsis"
     },
     "nsis": {
       "oneClick": false,
@@ -47,7 +46,7 @@
     "mac": {
       "icon": "build-resources/icon.png",
       "target": "dmg",
-      "category": "public.app-category.shopping",
+      "category": "public.app-category.business",
       "identity": "-",
       "hardenedRuntime": false,
       "notarize": false
