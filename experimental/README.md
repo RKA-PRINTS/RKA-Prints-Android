@@ -33,4 +33,4 @@ Build checks confirm compilation and packaging only. Physical-device acceptance 
 
 The desktop wrapper isolates website code from Node.js and the operating system. The app does not inject website credentials, add a privileged JavaScript bridge, or bundle the private website source.
 
-Source is in the experimental branch of [RKA-PRINTS/RKA-Prints-Android](https://github.com/RKA-PRINTS/RKA-Prints-Android). The main website source stays private. The repo can be renamed to RKA-Prints-Apps after testing; update build and website download links as part of that change.
+Source is in the experimental branch of [RKA-PRINTS/RKA-Prints-Android](https://github.com/RKA-PRINTS/RKA-Prints-Android). The main website source stays private. See the platform build guides and the repository contribution guide for development instructions.

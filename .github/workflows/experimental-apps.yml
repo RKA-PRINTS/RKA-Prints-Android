@@ -1,8 +1,5 @@
 name: Build experimental desktop and Apple apps
 on:
-  push:
-    branches: [experimental/apps]
-    paths: ['experimental/**', '.github/workflows/experimental-apps.yml']
   workflow_dispatch:
 permissions:
   contents: read

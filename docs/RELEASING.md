@@ -27,3 +27,11 @@ Keep signing keys outside the repository. Public source archives must exclude al
 Update the version code and version name in `AndroidManifest.xml` and the release notes before a new version. Push the reviewed change, then choose **Actions → Publish signed APKs → Run workflow** and enter an unused release tag. This manual workflow builds all three editions, verifies signatures, writes checksums and publishes a release. It never runs on pull requests or automatically on a push.
 
 After publishing, open each stable download URL in a browser that is not signed into GitHub. Confirm that it downloads an APK and that the website's download buttons use the same URLs.
+
+## Experimental platforms
+
+Run **Build experimental desktop and Apple apps** manually from the reviewed branch. The workflow builds Windows, both Mac architectures, Linux and the unsigned iPhone/iPad archive, then publishes a combined ZIP as a prerelease with latest disabled. Documentation edits and pull requests do not publish experimental releases automatically.
+
+The bundle includes installation notes, source and SHA-256 checksums. Download the published ZIP anonymously, verify its checksum and inspect its contents. Keep unsigned IPA and desktop signing limitations visible in release notes. Record physical-device testing separately from build checks.
+
+Use a fresh workflow run for a new experimental release; release tags are immutable. Never replace the stable Android latest release with an experimental bundle. Before a repository rename, review website download URLs, documentation and automation references together.
