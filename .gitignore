@@ -12,4 +12,8 @@
 .env.*
 local.properties
 __pycache__/
-
+*.mobileprovision
+*.p8
+*.pfx
+.DS_Store
+Thumbs.db

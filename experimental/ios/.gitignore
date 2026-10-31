@@ -1,0 +1,5 @@
+build/
+dist/
+Assets.xcassets/AppIcon.appiconset/*.png
+Assets.xcassets/AppIcon.appiconset/Contents.json
+__pycache__/
