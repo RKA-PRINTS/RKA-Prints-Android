@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "experimental",
+  "website": "https://rkaprints.web.app",
+  "release": "experimental-apps-5",
+  "filename": "RKA-Prints-Apps-Experimental-5.zip",
+  "url": "https://github.com/RKA-PRINTS/RKA-Prints-Android/releases/download/experimental-apps-5/RKA-Prints-Apps-Experimental-5.zip",
+  "sha256": "2489d07e0a538927f572831cf9faac8529d2a8b6fba32a53c724575f8be8af64",
+  "size_bytes": 493096700,
+  "platforms": [
+    {
+      "platform": "Windows x64",
+      "folder": "Windows",
+      "format": "exe"
+    },
+    {
+      "platform": "macOS Apple Silicon",
+      "folder": "macOS-Apple-Silicon",
+      "format": "dmg"
+    },
+    {
+      "platform": "macOS Intel",
+      "folder": "macOS-Intel",
+      "format": "dmg"
+    },
+    {
+      "platform": "Linux x64",
+      "folder": "Linux",
+      "format": "AppImage"
+    },
+    {
+      "platform": "iOS / iPadOS",
+      "folder": "iPhone-iPad",
+      "format": "ipa",
+      "signing": "Unsigned; Apple signing and provisioning required"
+    }
+  ]
+}

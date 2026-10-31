@@ -4,6 +4,10 @@ These apps open **https://rkaprints.web.app** in an app window. They are website
 
 This experiment is separate from the working Android v1.2 release. Test it before adding the installers to the public website downloads page. Do not replace stable download links with these files yet.
 
+## Download
+
+[Download the experimental ZIP](https://github.com/RKA-PRINTS/RKA-Prints-Android/releases/download/experimental-apps-5/RKA-Prints-Apps-Experimental-5.zip), or use the [verified download helper](../release-assets/experimental/). The bundle is hosted alongside the Android releases in this public repository.
+
 ## What's included
 
 | Folder | Platform | What to expect |

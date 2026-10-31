@@ -4,6 +4,8 @@ Lightweight apps for the live [RKA Prints website](https://rkaprints.web.app/). 
 
 ## Downloads
 
+Browse the [Android APK files](release-assets/v1.2.0/) or the [experimental apps folder](release-assets/experimental/) for Windows, macOS, Linux and iPhone/iPad. [Download the experimental ZIP directly](https://github.com/RKA-PRINTS/RKA-Prints-Android/releases/download/experimental-apps-5/RKA-Prints-Apps-Experimental-5.zip).
+
 | Platform | Status | Download and documentation |
 | --- | --- | --- |
 | Android | Stable | [Latest APK release](https://github.com/RKA-PRINTS/RKA-Prints-Android/releases/latest) · [Android guide](docs/ANDROID.md) |
